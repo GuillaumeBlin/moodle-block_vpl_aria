@@ -1,4 +1,3 @@
-# moodle-block_quiz_gg
 Moodle 2.0+ block allowing quiz group grading
 ================
 
