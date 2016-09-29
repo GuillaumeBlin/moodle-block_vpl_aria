@@ -71,7 +71,6 @@ class block_quiz_gg extends block_base {
     $this->content->icons = array();
     $this->content->footer = '';
     $id=$this->page->course->id;
-    $cm = get_coursemodule_from_id('quiz', $id, 0, false, MUST_EXIST); 
     $gps=groups_get_user_groups($id);
     if(count($gps[0])!=1){
 		  $this->content->text ="You are not part of a unique group. Quiz grading will not be considered for this quiz.";
