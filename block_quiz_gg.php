@@ -18,7 +18,6 @@
 defined('MOODLE_INTERNAL') || die();
 require_once(dirname(__FILE__) . '/../../config.php');
 require_once($CFG->dirroot . '/mod/quiz/locallib.php');
-require_once($CFG->dirroot . '/mod/quiz/report/statistics/statisticslib.php');
 global $CFG, $DB;
 
 /**
@@ -72,7 +71,6 @@ class block_quiz_gg extends block_base {
     $this->content->icons = array();
     $this->content->footer = '';
     $id=$this->page->course->id;
-    $cm = get_coursemodule_from_id('quiz', $id, 0, false, MUST_EXIST); 
     $gps=groups_get_user_groups($id);
     if(count($gps[0])!=1){
 		  $this->content->text ="You are not part of a unique group. Quiz grading will not be considered for this quiz.";
@@ -101,7 +99,6 @@ class block_quiz_gg extends block_base {
 		$alreadydone = $DB->get_records('block_quiz_gg', array('blockid' => $this->instance->id, 'attemptid' => $attemptid));
 		if (count($alreadydone)==0){
 			$attemptobj = quiz_attempt::create($attemptid);
-			$qubaids = quiz_statistics_qubaids_condition($attemptobj->get_quizid(), array(),"QUIZ_ATTEMPTLAST");
 			$quizid=$attemptobj->get_quizid();
 			$dm = new question_engine_data_mapper();
         		$quba = question_engine::load_questions_usage_by_activity($attemptobj->get_attempt()->uniqueid);
