@@ -1,4 +1,4 @@
-Moodle 2.0+ block allowing quiz group grading
+Moodle 2.0+ block allowing aria support for vpl feedback
 ================
 
 Synthesis

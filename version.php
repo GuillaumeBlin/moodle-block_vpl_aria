@@ -15,17 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for the block_quiz_gg plugin.
+ * Version information for the block_vpl_aria plugin.
  *
- * @package    block_quiz_gg
+ * @package    block_vpl_aria
  * @copyright  2016 Guillaume Blin
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016092400;
+$plugin->version   = 2016092402;
 $plugin->requires  = 2016051900;        // Requires this Moodle version
-$plugin->component = 'block_quiz_gg'; // Full name of the plugin (used for diagnostics)
-
-$plugin->dependencies = array('mod_quiz' => 2016051900);
+$plugin->component = 'block_vpl_aria'; // Full name of the plugin (used for diagnostics)

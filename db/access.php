@@ -15,9 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Quiz group grading block caps.
  *
- * @package    block_quiz_gg
+ * @package    block_vpl_aria
  * @copyright  2016 Guillaume Blin
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,7 +24,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
-    'block/quizz_gg:myaddinstance' => array(
+    'block/vpl_aria:myaddinstance' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_BLOCK,
         'archetypes' => array(
@@ -33,7 +32,7 @@ $capabilities = array(
         ),
         'clonepermissionsfrom' => 'moodle/my:manageblocks'
     ),
-    'block/quiz_gg:addinstance' => array(
+    'block/vpl_aria:addinstance' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_BLOCK,
         'archetypes' => array(

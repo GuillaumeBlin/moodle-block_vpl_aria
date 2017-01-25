@@ -15,12 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'block_quiz_gg', language 'en'
  *
- * @package    block_quiz_gg
+ * @package    block_vpl_aria
  * @copyright  2016 Guillaume Blin
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Quiz group grading';
-$string['quiz_gg:addinstance'] = 'Add a new quiz group grading block';
+$string['pluginname'] = 'VPL aria capabilities';
+$string['vpl_aria:addinstance'] = 'Add a VPL ARIA block';
