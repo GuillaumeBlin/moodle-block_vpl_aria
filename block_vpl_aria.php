@@ -63,15 +63,18 @@ $this->content->text .="<h5>vpl grade</h5><div id='aria_grade' role='region' ari
 $this->content->text .="var keys = {};";
 $this->content->text .="document.onkeydown=function (e) {";
 $this->content->text .="    keys[e.which] = true;";
+$this->content->text .="    var do_edit = ".$this->config->editkeysc.";";
 $this->content->text .="    var do_save = ".$this->config->savekeysc.";";
 $this->content->text .="    var do_run = ".$this->config->runkeysc.";";
 $this->content->text .="    var do_evaluate = ".$this->config->evalkeysc.";";
+$this->content->text .="    var to_edit=true; for (var i in do_edit) {if (!keys.hasOwnProperty(do_edit[i])) to_edit=false;};";
 $this->content->text .="    var to_save=true; for (var i in do_save) {if (!keys.hasOwnProperty(do_save[i])) to_save=false;};";
 $this->content->text .="    var to_run=true; for (var i in do_run) {if (!keys.hasOwnProperty(do_run[i])) to_run=false;};";
 $this->content->text .="    var to_eval=true; for (var i in do_evaluate) {if (!keys.hasOwnProperty(do_evaluate[i])) to_eval=false;};";
 $this->content->text .="    if(to_save) document.getElementById('vpl_ide_save').click();";
 $this->content->text .="    if(to_run) document.getElementById('vpl_ide_run').click();";
 $this->content->text .="    if(to_eval) document.getElementById('vpl_ide_evaluate').click();";
+$this->content->text .="    if(to_edit) document.getElementsByClassName('ace_text-input')[0].focus();";
 $this->content->text .="};";
 
 $this->content->text .="document.onkeyup=function(e){delete keys[e.which];};";
