@@ -53,20 +53,40 @@ class block_vpl_aria extends block_base {
     if(strpos($this->page->url, 'mod/vpl/forms/edit') === false){
         $this->content->text='';	
     }else{
-	$this->content->text ="<div style='width:1px; height:1px; overflow:hidden;'>ARIA UB CAPABILITIES ADDON- 
-<h5>vpl grade</h5><div id='aria_grade' role='region' aria-live='polite' aria-relevant='all' aria-atomic='true' aria-busy='false'></div> <h5>vpl comments</h5><div aria-relevant='all' role='region'  id='aria_comments' aria-live='polite' aria-atomic='true' aria-busy='false'></div><h5>vpl execution</h5><div style='width:1px; height:1px; overflow:hidden;' id='aria_execution' aria-live='polite' aria-atomic='true' aria-busy='false'></div></div>";
+    	if($this->config->divvisbile){
+			$this->content->text ="<div>ARIA UB CAPABILITIES ADDON- ";
+		}else{
+			$this->content->text ="<div style='width:1px; height:1px; overflow:hidden;'>ARIA UB CAPABILITIES ADDON- ";
+		}
+$this->content->text .="<h5>vpl grade</h5><div id='aria_grade' role='region' aria-live='polite' aria-relevant='all' aria-atomic='true' aria-busy='false'></div> <h5>vpl comments</h5><div aria-relevant='all' role='region'  id='aria_comments' aria-live='polite' aria-atomic='true' aria-busy='false'></div><h5>vpl execution</h5><div style='width:1px; height:1px; overflow:hidden;' id='aria_execution' aria-live='polite' aria-atomic='true' aria-busy='false'></div></div>";
     $this->content->text .="<script type=\"text/javascript\">";
+$this->content->text .="var keys = {};";
+$this->content->text .="document.onkeydown=function (e) {";
+$this->content->text .="    keys[e.which] = true;";
+$this->content->text .="    var do_save = ".$this->config->savekeysc.";";
+$this->content->text .="    var do_run = ".$this->config->runkeysc.";";
+$this->content->text .="    var do_evaluate = ".$this->config->evalkeysc.";";
+$this->content->text .="    var to_save=true; for (var i in do_save) {if (!keys.hasOwnProperty(do_save[i])) to_save=false;};";
+$this->content->text .="    var to_run=true; for (var i in do_run) {if (!keys.hasOwnProperty(do_run[i])) to_run=false;};";
+$this->content->text .="    var to_eval=true; for (var i in do_evaluate) {if (!keys.hasOwnProperty(do_evaluate[i])) to_eval=false;};";
+$this->content->text .="    if(to_save) document.getElementById('vpl_ide_save').click();";
+$this->content->text .="    if(to_run) document.getElementById('vpl_ide_run').click();";
+$this->content->text .="    if(to_eval) document.getElementById('vpl_ide_evaluate').click();";
+$this->content->text .="};";
+
+$this->content->text .="document.onkeyup=function(e){delete keys[e.which];};";
     $this->content->text .="var target = document.getElementById('vpl_results');";
     $this->content->text .="var observer = new MutationObserver(function(mutations) {";
 $this->content->text .="document.getElementById('aria_grade').textContent='';document.getElementById('aria_comments').textContent='';document.getElementById('aria_execution').textContent='';document.getElementById('aria_grade').setAttribute('aria-busy', 'true');document.getElementById('aria_comments').setAttribute('aria-busy', 'true');document.getElementById('aria_execution').setAttribute('aria-busy', 'true');";
-    $this->content->text .="  console.log(document.getElementById('vpl_results').textContent);";
-$this->content->text .="document.getElementById('aria_grade').textContent=document.getElementById('ui-accordion-vpl_results-header-0').textContent".$this->config->gregex.";";
-$this->content->text .="document.getElementById('aria_comments').textContent=document.getElementById('ui-accordion-vpl_results-panel-1').textContent".$this->config->cregex.";";
-$this->content->text .="document.getElementById('aria_execution').textContent=document.getElementById('ui-accordion-vpl_results-panel-2').textContent".$this->config->eregex.";";
+$this->content->text .="if(document.getElementById('ui-accordion-vpl_results-header-0')){document.getElementById('aria_grade').textContent=document.getElementById('ui-accordion-vpl_results-header-0').textContent".$this->config->gregex.";};";
+$this->content->text .="if(document.getElementById('ui-accordion-vpl_results-panel-0')){document.getElementById('aria_comments').textContent=document.getElementById('ui-accordion-vpl_results-panel-0').textContent".$this->config->cregex.";};";
+$this->content->text .="if(document.getElementById('ui-accordion-vpl_results-panel-1')){document.getElementById('aria_comments').textContent=document.getElementById('ui-accordion-vpl_results-panel-1').textContent".$this->config->cregex.";};";
+$this->content->text .="if(document.getElementById('ui-accordion-vpl_results-panel-2')){document.getElementById('aria_execution').textContent=document.getElementById('ui-accordion-vpl_results-panel-2').textContent".$this->config->eregex.";};";
 $this->content->text .="document.getElementById('aria_grade').setAttribute('aria-busy', 'false');document.getElementById('aria_comments').setAttribute('aria-busy', 'false');document.getElementById('aria_execution').setAttribute('aria-busy', 'false');";
 $this->content->text .="});";
     $this->content->text .="var config = { childList: true, characterData: true };";
     $this->content->text .="observer.observe(target, config);</script>";
+    $this->content->text .="</script>";
     }
     return $this->content;
     }
@@ -76,4 +96,3 @@ $this->content->text .="});";
         return true;
     }
 }
-
